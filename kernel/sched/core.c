@@ -6913,7 +6913,7 @@ static struct task_struct *__pick_migrate_task(struct rq *rq)
 	for_each_class(class) {
 		next = class->pick_next_task(rq, NULL, NULL);
 		if (next) {
-			next->sched_class->put_prev_task(rq, next);
+			next->sched_class->put_prev_task(rq, next, NULL);
 			return next;
 		}
 	}
