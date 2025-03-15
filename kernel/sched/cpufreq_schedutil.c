@@ -489,14 +489,6 @@ static unsigned long sugov_iowait_apply(struct sugov_cpu *sg_cpu, u64 time,
 	return (sg_cpu->iowait_boost * max_cap) >> SCHED_CAPACITY_SHIFT;
 }
 
-#ifdef CONFIG_CPU_IDLE_GOV_TEO
-inline unsigned long sched_cpu_util(int cpu)
-{
-	unsigned long max = arch_scale_cpu_capacity(NULL, cpu);
-	return schedutil_cpu_util(cpu, cpu_util_cfs(cpu_rq(cpu)), max, ENERGY_UTIL, NULL);
-}
-#endif
-
 /*
  * Make sugov_should_update_freq() ignore the rate limit when DL
  * has increased the utilization.
